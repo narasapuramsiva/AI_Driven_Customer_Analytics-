@@ -1,0 +1,36 @@
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer
+)
+from reportlab.lib.styles import getSampleStyleSheet
+
+pdf = SimpleDocTemplate(
+    "reports/segmentation_report.pdf",
+    pagesize=letter
+)
+
+styles = getSampleStyleSheet()
+
+content = []
+
+content.append(
+    Paragraph(
+        "Customer Segmentation Report",
+        styles['Title']
+    )
+)
+
+content.append(Spacer(1, 20))
+
+content.append(
+    Paragraph(
+        "This report contains customer segmentation results generated using K-Means Clustering.",
+        styles['BodyText']
+    )
+)
+
+pdf.build(content)
+
+print("PDF Report Generated")

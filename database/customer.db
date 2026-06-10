@@ -1,0 +1,20 @@
+```python
+import sqlite3
+import pandas as pd
+
+df = pd.read_csv("datasets/customers.csv")
+
+conn = sqlite3.connect("database/customer.db")
+
+df.to_sql(
+    "customers",
+    conn,
+    if_exists="replace",
+    index=False
+)
+
+conn.commit()
+conn.close()
+
+print("Database Created Successfully")
+```
